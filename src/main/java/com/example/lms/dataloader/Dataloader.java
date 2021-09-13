@@ -3,11 +3,11 @@ package com.example.lms.dataloader;
 import com.example.lms.domain.Brand;
 import com.example.lms.domain.BrandVariant;
 import com.example.lms.domain.Contact;
-import com.example.lms.domain.Leads;
+import com.example.lms.domain.Lead;
 import com.example.lms.repository.BrandRepo;
 import com.example.lms.repository.BrandVariantRepo;
 import com.example.lms.repository.ContactRepo;
-import com.example.lms.repository.LeadsRepo;
+import com.example.lms.repository.LeadRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -28,7 +28,7 @@ public class Dataloader implements ApplicationRunner {
 	@Autowired
 	private ContactRepo contactRepo;
 	@Autowired
-	private LeadsRepo leadsRepo;
+	private LeadRepo leadRepo;
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
@@ -37,7 +37,7 @@ public class Dataloader implements ApplicationRunner {
 		brandVariantRepo.deleteAll();
 		brandRepo.deleteAll();
 		contactRepo.deleteAll();
-		leadsRepo.deleteAll();
+		leadRepo.deleteAll();
 		// Add brands
 		List<String> brandNames =
 					new ArrayList<>(Arrays.asList("Volkswagen","Kia","Cadillac","BMW"));
@@ -94,22 +94,22 @@ public class Dataloader implements ApplicationRunner {
 		contactRepo.saveAll(contacts);
 
 		//leads
-		List<Leads> leads = new ArrayList<>();
+		List<Lead> leads = new ArrayList<>();
 		Contact contactArya = contactRepo.findByEmail("aryaodak@test.com");
 		BrandVariant brandVariant2Series = brandVariantRepo.findByName("2-Series");
-		Leads leadArya = new Leads(contactArya.getName(),contactArya,brandVariant2Series);
+		Lead leadArya = new Lead(contactArya.getName(),contactArya,brandVariant2Series);
 		leads.add(leadArya);
 
 		Contact contactJohn = contactRepo.findByEmail("johnsmith@test.com");
 		BrandVariant brandVariantGolf = brandVariantRepo.findByName("Golf");
-		Leads leadJohn = new Leads(contactJohn.getName(),contactJohn,brandVariantGolf);
+		Lead leadJohn = new Lead(contactJohn.getName(),contactJohn,brandVariantGolf);
 		leads.add(leadJohn);
 
 		Contact contactAdria= contactRepo.findByEmail("aryaodak@test.com");
 		BrandVariant brandVariantAdria = brandVariantRepo.findByName("Series 61");
-		Leads leadAdria = new Leads(contactAdria.getName(),contactAdria,brandVariantAdria);
+		Lead leadAdria = new Lead(contactAdria.getName(),contactAdria,brandVariantAdria);
 		leads.add(leadAdria);
 
-		leadsRepo.saveAll(leads);
+		leadRepo.saveAll(leads);
 	}
 }

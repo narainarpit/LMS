@@ -2,22 +2,23 @@ package com.example.lms.domain;
 
 import javax.persistence.*;
 
-@Entity
-public class Leads {
+@Entity(name = "Leads")
+public class Lead {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+
 	@OneToOne
 	private Contact contact;
 	@OneToOne
 	BrandVariant brandVariant;
 
-	public Leads() {
+	public Lead() {
 	}
 
-	public Leads(String name, Contact contact, BrandVariant brandVariant) {
+	public Lead(String name, Contact contact, BrandVariant brandVariant) {
 		this.name = name;
 		this.contact = contact;
 		this.brandVariant = brandVariant;
