@@ -1,7 +1,10 @@
 package com.example.lms.controller;
 
 import com.example.lms.domain.Lead;
+import com.example.lms.domain.Opportunity;
 import com.example.lms.service.LeadService;
+import com.example.lms.service.LeadStatusService;
+import com.example.lms.service.OpportunityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,19 +16,19 @@ import java.util.Optional;
 @Controller
 public class LeadController {
 	@Autowired
-	LeadService leadService;
+	OpportunityService opportunityService;
+
+	@Autowired
+	LeadStatusService leadStatusService;
+
 	@RequestMapping("/lead")
 	public String getLead(@RequestParam Long id, ModelMap modelMap){
-		Lead lead = null;
-		Optional<Lead> leadOptional = leadService.getLead(id);
-		if(leadOptional.isPresent()){
-			lead = leadOptional.get();
+		Optional<Opportunity> opportunity = opportunityService.getOpportunity(id);
+		if(opportunity.isPresent()){
+			modelMap.put("opportunity",opportunity.get());
 		}
-		modelMap.put("lead",lead);
+		modelMap.put("leadStatuses",leadStatusService.getAllLeadStatus());
 
 		 return "lead";
-
-
 	}
-
 }
