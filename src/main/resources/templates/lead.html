@@ -9,9 +9,12 @@
             th:src="@{/css/bootstrap-5.1.1-dist/js/bootstrap.bundle.js}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             th:src="@{/js/jquery/jquery-3.6.0.js}"></script>
+    <script src="https://kit.fontawesome.com/a4f9aa06fc.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" media="screen" th:href="@{/css/lead.css}" href="../static/css/lead.css">
+    <link href=' http://fonts.googleapis.com/css?family=Hahmlet' rel='stylesheet' type='text/css'>
 </head>
-<body>
+<body style="background: #6491bc">
 <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/home">
@@ -33,8 +36,8 @@
         </div>
     </nav>
 </div>
-<div class="container">
-    <div class="card" style="margin-top: 2em; margin-bottom: 2em ;background: #d0e5ec!important">
+<div style="margin:2em;">
+    <div class="card" style="margin-top: 2em; margin-bottom: 2em ;background: #f3f1f2">
         <div class="card-body">
             <div class="row">
                 <h5 class="card-title">Sales Opportunity</h5>
@@ -43,39 +46,54 @@
             </div>
         </div>
     </div>
-    <div class="card" style="margin-top: 2em; margin-bottom: 2em ;background: #d0e5ec!important">
+    <div class="card" style="margin-top: 2em; margin-bottom: 2em ;background: #f3f1f2">
         <div class="card-body">
-            <div class="col-sm">
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar"
-                         style="width: 15%; background:#0a53be; border-top-left-radius: 2em;
-                                  border-top-right-radius: 2em; margin-right: 0.437em; "
-                         aria-valuenow="15" aria-valuemin="0"
-                         aria-valuemax="100"></div>
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="30"
-                         aria-valuemin="0" aria-valuemax="100"></div>
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20"
-                         aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="row">
+                <div class="col-8">
+                    <div class="progress progressBackground">
+                        <div class="progress-bar barStyle" role="progressbar">
+                            <div>New</div>
+
+                        </div>
+                        <div>
+                            <div class="test"></div>
+                        </div>
+                        <div class="progress-bar barStyle" role="progressbar">
+                            <div>Accepted</div>
+                        </div>
+                        <div>
+                            <div class="test"></div>
+                        </div>
+                        <div class="progress-bar barStyle" role="progressbar">
+                            <div>In Progress</div>
+                        </div>
+                        <div>
+                            <div class="test"></div>
+                        </div>
+                        <div class="progress-bar barStyle barBackgroundLight" role="progressbar">
+                            <div>Closed</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm">
-                    <select name="Status" id="status">
-                        <span th:each="status : ${leadStatuses}">
-                             <option th:value="${status.value}" th:text="${status.label}"></option>
-                        </span>
+                <div class="col-2"></div>
+                <div class="col-1" style="text-align: right">
+                    <select class="form-select" name="Status" id="status">
+                            <span th:each="status : ${leadStatuses}">
+                                 <option th:value="${status.value}" th:text="${status.label}"></option>
+                            </span>
                     </select>
                 </div>
-                <div class="col-sm">
-                    <button>Save</button>
+                <div class="col-1" style="text-align: left">
+                    <button type="button" class="btn buttonStyle">Save</button>
                 </div>
             </div>
-
         </div>
     </div>
-    <div class="container">
+    <div>
         <div class="row">
             <div class="col-sm">
-                <div class="container border">
-                    <h6>Customer Information</h6>
+                <div class="container border" style="background: #f3f1f2;  margin-bottom:1em; padding: 1em">
+                    <h5>Customer Information</h5>
                     <div class="row">
                         <div class="col-sm">
                             <label>First Name :</label>
@@ -121,18 +139,19 @@
                     </div>
                     <div class="row">
                         <div class="col-sm">
-                            <button>Accept</button>
+                            <button type="button" class="btn buttonStyle" style="float: right">View</button>
                         </div>
                     </div>
                 </div>
-                <div class="container border">
-                    <h6>Vehicle Information</h6>
+                <div class="container border" style="background: #f3f1f2;  margin-bottom:1em; padding: 1em">
+                    <h5>Vehicle Information</h5>
                     <div class="row">
                         <div class="col-sm">
                             <label>Brand :</label>
                         </div>
                         <div class="col-sm">
-                            <output type="text" th:text="${opportunity.latestLead.brandVariant.brand.name}">John</output>
+                            <output type="text" th:text="${opportunity.latestLead.brandVariant.brand.name}">John
+                            </output>
                         </div>
                     </div>
                     <div class="row">
@@ -144,11 +163,12 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm">
-                            <label>Classification</label>
+                        <div class="col-sm lighterFont">
+                            <label>Classification :</label>
                         </div>
                         <div class="col-sm">
-                            <output type="text" th:text="${opportunity.latestLead.brandVariant.classification}">john.doe@johndoe.com
+                            <output type="text" th:text="${opportunity.latestLead.brandVariant.classification}">
+                                john.doe@johndoe.com
                             </output>
                         </div>
                     </div>
@@ -157,7 +177,9 @@
                             <label>Country of Origin :</label>
                         </div>
                         <div class="col-sm">
-                            <output type="text" th:text="${opportunity.latestLead.brandVariant.countryOfOrigin}">0400000</output>
+                            <output type="text" th:text="${opportunity.latestLead.brandVariant.countryOfOrigin}">
+                                0400000
+                            </output>
                         </div>
                     </div>
                     <div class="row">
@@ -165,7 +187,8 @@
                             <label>Production Year :</label>
                         </div>
                         <div class="col-sm">
-                            <output type="text" th:text="${opportunity.latestLead.brandVariant.productionYear}">Cox Street, LA,
+                            <output type="text" th:text="${opportunity.latestLead.brandVariant.productionYear}">Cox
+                                Street, LA,
                                 USA
                             </output>
                         </div>
@@ -173,33 +196,34 @@
                 </div>
             </div>
             <div class="col-sm">
-                <div class="container border">
-                    <h6>Details</h6>
-                        <table class="table table-bordered">
-                            <thead style="background: #ebebeb !important">
+                <div class="container border" style="background: #f3f1f2;  margin-bottom:1em; padding: 1em">
+                    <h5>Details</h5>
+                    <table class="table table-bordered">
+                        <thead style="background: #d7d7d7">
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Model</th>
+                            <th scope="col">Created Date</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <div>
                             <tr>
-                                <th scope="col">Model Image</th>
-                                <th scope="col">Model Name</th>
-                                <th scope="col">Created Date</th>
-                                <th scope="col">Status</th>
+                                <td><img style="width: 90px" alt="" src="https://vga-images.herokuapp.com/VICCI/image/AD12N6$GPFXPFX$GPJOPJO$GPM4PM4$GWA2WA2$GWGMWGM$GWPAWPA$GZEXZEX/F14%202T2T/right">
+                                </td>
+                                <td th:text="${opportunity.latestLead.brandVariant.name}">Callback Request</td>
+                                <td th:text="${opportunity.latestLead.createDateTime}">2021-04-03</td>
+                                <td th:text="${opportunity.latestLead.leadStatus.label}">Brand</td>
                             </tr>
-                            </thead>
-                            <tbody>
-                            <div>
-                                <tr>
-                                    <td>John Doe</td>
-                                    <td th:text="${opportunity.latestLead.brandVariant.name}">Callback Request</td>
-                                    <td th:text="${opportunity.latestLead.createDateTime}">2021-04-03</td>
-                                    <td th:text="${opportunity.latestLead.leadStatus.label}">Brand</td>
-                                </tr>
-                            </div>
-                            </tbody>
-                        </table>
+                        </div>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="col-sm">
-                <div class="container border">
-                    <h6>Lead Information</h6>
+                <div class="container border" style="background: #f3f1f2;  margin-bottom:1em; padding: 1em">
+                    <h5>Lead Information</h5>
                     <div class="row">
                         <div class="col-sm">
                             <label>Request Type :</label>
@@ -221,7 +245,8 @@
                             <label>Model :</label>
                         </div>
                         <div class="col-sm">
-                            <output type="text" th:text="${opportunity.latestLead.brandVariant.name}">john.doe@johndoe.com
+                            <output type="text" th:text="${opportunity.latestLead.brandVariant.name}">
+                                john.doe@johndoe.com
                             </output>
                         </div>
                     </div>
@@ -238,7 +263,9 @@
                             <label>Created Date :</label>
                         </div>
                         <div class="col-sm">
-                            <output type="text" th:text="${#dates.format(opportunity.latestLead.createDateTime, 'dd-MMM-yyyy')}">Cox Street, LA,
+                            <output type="text"
+                                    th:text="${#dates.format(opportunity.latestLead.createDateTime, 'dd-MMM-yyyy')}">Cox
+                                Street, LA,
                                 USA
                             </output>
                         </div>

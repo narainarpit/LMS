@@ -1,0 +1,39 @@
+body { font-family: 'Droid Sans', arial, serif; }
+.barStyle{
+    width: 20%;
+    border-radius: 0.5em;
+    margin-right: 0.437em;
+    background-color: #011d50 ;
+    font-size: 1rem;
+    font-weight: 400;
+}
+.progressBackground{
+    background: none;
+    height: 3em;
+}
+.barBackgroundLight{
+    background-color: #d7d7d7;
+    color: grey;
+
+}
+.test{
+    width: 2em;
+    height: 2em;
+    border-right: 0.2em solid #011d50;
+    border-top: 0.2em solid #011d50;
+    transform: rotate(45deg);
+    margin-right: 2em;
+    margin-top: 7px;
+}
+
+.buttonStyle{
+    background-color: #011d50;
+    color: white;
+    /*margin-left:2em;*/
+}
+.buttonStyle:hover{
+    background:lightblue;
+}
+.lighterFont{
+    font-weight: 400;
+}
