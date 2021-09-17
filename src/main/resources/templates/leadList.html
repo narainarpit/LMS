@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Leads</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" media="screen"
+          th:href="@{/css/bootstrap.min.css}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+            th:src="@{/css/bootstrap-5.1.1-dist/js/bootstrap.bundle.js}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            th:src="@{/js/jquery/jquery-3.6.0.js}"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+</head>
+<body style="background: #6491bc">
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/home">
+                <img th:src="@{images/logo.jpg}" height="50px" width="50px" src="../static/images/logo.jpg">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/leadList">Lead</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div style="margin:2em">
+        <div class="card" style="margin-top: 2em; margin-bottom: 2em ;background: #f3f1f2">
+            <div class="card-body">
+                <div class="row">
+                    <h5 class="card-title">Sales Opportunity</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Lead List</h6>
+                </div>
+            </div>
+        </div>
+        <div style="background: #f3f1f2; text-align: center ">
+            <table class="table table-bordered">
+                <thead style="background: #d7d7d7;">
+                <tr>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Request Type</th>
+                    <th scope="col">Created Date</th>
+                    <th scope="col">Brand</th>
+                    <th scope="col">Model</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">View</th>
+                </tr>
+                </thead>
+                <tbody>
+                <div>
+                    <tr th:each="opportunity : ${leads}">
+                        <td th:text="${opportunity.name}">John Doe</td>
+                        <td th:text="${opportunity.latestLead.requestType.label}">Callback Request</td>
+                        <td th:text="${#dates.format(opportunity.latestLead.createDateTime, 'dd-MM-yyyy')}">2021-04-03</td>
+                        <td th:text="${opportunity.latestLead.brandVariant.brand.name}">Brand</td>
+                        <td th:text="${opportunity.latestLead.brandVariant.name}">Model</td>
+                        <td th:text="${opportunity.latestLead.leadStatus.label}">Model</td>
+                        <td th:text="${opportunity.latestLead.contact.address}">Address</td>
+                        <td><a class="nav-link" href="/leads"
+                               th:href="@{/lead(id=${opportunity.id})}">View
+                        </a>
+                        </td>
+                    </tr>
+                </div>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
