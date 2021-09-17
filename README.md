@@ -1,6 +1,6 @@
 # LMS
         Lead Management System
-        Spring Boot based Lead Management System
+        This Spring Boot based website is for car dealers to view the leads received from various sources like Facebook, etc. from people looking to buy or test drive the car.
 
         functionality:
         - Data is loaded automatically on startup of the project using Dataloader class
@@ -9,6 +9,6 @@
             - Brand Variant - stores the model of the car
             - Contact - contact details of the person enquiring to buy a car
             - Lead - stores the information about the request, like type of request, status of request
-            - Opportunity - this is an umberalla object to store multiple leads from the same person. Currently, all the Lead information is shown using latest lead field
+            - Opportunity - this is an umbrella object to store multiple leads from the same person. Currently, all the Lead information is shown using latest lead field
         - The List view and Lead view is based on opportunity
         - All the lead information is showing latest lead information
