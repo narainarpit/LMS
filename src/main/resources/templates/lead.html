@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" media="screen" th:href="@{/css/lead.css}" href="../static/css/lead.css">
     <link href=' http://fonts.googleapis.com/css?family=Hahmlet' rel='stylesheet' type='text/css'>
+    <script src="../static/js/lead.js"  th:src="@{/js/lead.js}"></script>
 </head>
 <body style="background: #6491bc">
 <div>
@@ -37,6 +38,12 @@
     </nav>
 </div>
 <div style="margin:2em;">
+    <div id="banner" class="alert alert-dismissible fade show" role="alert" hidden>
+        <strong id="bannerText">Status updated successfully</strong>
+        <button type="button" class="close float-end" data-dismiss="alert" aria-label="Close" onclick="closeBanner()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
     <div class="card" style="margin-top: 2em; margin-bottom: 2em ;background: #f3f1f2">
         <div class="card-body">
             <div class="row">
@@ -53,38 +60,37 @@
                     <div class="progress progressBackground">
                         <div class="progress-bar barStyle" role="progressbar">
                             <div>New</div>
-
                         </div>
                         <div>
-                            <div class="test"></div>
+                            <div class="chevron"></div>
                         </div>
-                        <div class="progress-bar barStyle" role="progressbar">
+                        <div id="acceptedChevron" class="progress-bar barStyle" role="progressbar">
                             <div>Accepted</div>
                         </div>
                         <div>
-                            <div class="test"></div>
+                            <div class="chevron"></div>
                         </div>
-                        <div class="progress-bar barStyle" role="progressbar">
+                        <div id="inProgressChevron" class="progress-bar barStyle" role="progressbar">
                             <div>In Progress</div>
                         </div>
                         <div>
-                            <div class="test"></div>
+                            <div class="chevron"></div>
                         </div>
-                        <div class="progress-bar barStyle barBackgroundLight" role="progressbar">
+                        <div id="closedChevron" class="progress-bar barStyle" role="progressbar">
                             <div>Closed</div>
                         </div>
                     </div>
                 </div>
-                <div class="col-2"></div>
-                <div class="col-1" style="text-align: right">
+                <div class="col-1"></div>
+                <div class="col-2" style="text-align: right">
                     <select class="form-select" name="Status" id="status">
                             <span th:each="status : ${leadStatuses}">
-                                 <option th:value="${status.value}" th:text="${status.label}"></option>
+                                 <option th:id="${status.value}" th:value="${status.value}" th:text="${status.label}"></option>
                             </span>
                     </select>
                 </div>
                 <div class="col-1" style="text-align: left">
-                    <button type="button" class="btn buttonStyle">Save</button>
+                    <button type="button" class="btn buttonStyle" onclick="onClickStatusValue()">Save</button>
                 </div>
             </div>
         </div>
@@ -114,17 +120,23 @@
                         <div class="col-sm">
                             <label>Email :</label>
                         </div>
-                        <div class="col-sm">
+                        <div class="col-sm" hidden="true" id="custInfoEmail">
                             <output type="text" th:text="${opportunity.latestLead.contact.email}">john.doe@johndoe.com
                             </output>
+                        </div>
+                        <div class="col-sm" id="custInfoEmailHidden">
+                            <output type="text">xxxx@xx.com</output>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm">
                             <label>Phone :</label>
                         </div>
-                        <div class="col-sm">
+                        <div class="col-sm" id="custInfoPhone" hidden="true">
                             <output type="text" th:text="${opportunity.latestLead.contact.phone}">0400000</output>
+                        </div>
+                        <div class="col-sm" id="custInfoPhoneHidden">
+                            <output type="text">0XXXXXXXX</output>
                         </div>
                     </div>
                     <div class="row">
@@ -139,7 +151,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm">
-                            <button type="button" class="btn buttonStyle" style="float: right">View</button>
+                            <button type="button" id="viewBtn" class="btn buttonStyle" onclick="clickViewBtn()" style="float: right">View</button>
                         </div>
                     </div>
                 </div>
@@ -187,9 +199,8 @@
                             <label>Production Year :</label>
                         </div>
                         <div class="col-sm">
-                            <output type="text" th:text="${opportunity.latestLead.brandVariant.productionYear}">Cox
-                                Street, LA,
-                                USA
+                            <output type="text"
+                                    th:text="${#dates.format(opportunity.latestLead.brandVariant.productionYear, 'yyyy')}">2017
                             </output>
                         </div>
                     </div>
@@ -210,10 +221,11 @@
                         <tbody>
                         <div>
                             <tr>
-                                <td><img style="width: 90px" alt="" src="https://vga-images.herokuapp.com/VICCI/image/AD12N6$GPFXPFX$GPJOPJO$GPM4PM4$GWA2WA2$GWGMWGM$GWPAWPA$GZEXZEX/F14%202T2T/right">
+                                <td><img style="width: 120px" alt=""
+                                         src="../static/images/car-image.png" th:src="@{images/car-image.png}">
                                 </td>
                                 <td th:text="${opportunity.latestLead.brandVariant.name}">Callback Request</td>
-                                <td th:text="${opportunity.latestLead.createDateTime}">2021-04-03</td>
+                                <td th:text="${#dates.format(opportunity.latestLead.createDateTime, 'dd-MM-yyyy')}">2021-04-03</td>
                                 <td th:text="${opportunity.latestLead.leadStatus.label}">Brand</td>
                             </tr>
                         </div>
@@ -264,9 +276,7 @@
                         </div>
                         <div class="col-sm">
                             <output type="text"
-                                    th:text="${#dates.format(opportunity.latestLead.createDateTime, 'dd-MMM-yyyy')}">Cox
-                                Street, LA,
-                                USA
+                                    th:text="${#dates.format(opportunity.latestLead.createDateTime, 'dd-MM-yyyy')}">15-Sep-2021
                             </output>
                         </div>
                     </div>
@@ -286,5 +296,14 @@
         </div>
     </div>
 </div>
+<script th:inline="javascript">
+    var username = /*[[${opportunity.latestLead.source}]]*/ "Facebook";
+    console.log(/*[[${opportunity.latestLead.leadStatus}]]*/);
+    let leadStatus = /*[[${opportunity.latestLead.leadStatus.value}]]*/ "New"
+    let option = document.getElementById(leadStatus);
+    option.setAttribute("selected","selected")
+    setPathChevron(leadStatus)
+
+</script>
 </body>
 </html>

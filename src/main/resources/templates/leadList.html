@@ -34,7 +34,7 @@
         </nav>
     </div>
     <div style="margin:2em">
-        <div class="card" style="margin-top: 2em; margin-bottom: 2em ;background: #d0e5ec!important">
+        <div class="card" style="margin-top: 2em; margin-bottom: 2em ;background: #f3f1f2">
             <div class="card-body">
                 <div class="row">
                     <h5 class="card-title">Sales Opportunity</h5>
@@ -42,9 +42,9 @@
                 </div>
             </div>
         </div>
-        <div>
+        <div style="background: #f3f1f2; text-align: center ">
             <table class="table table-bordered">
-                <thead style="background: #ebebeb !important">
+                <thead style="background: #d7d7d7;">
                 <tr>
                     <th scope="col">Customer</th>
                     <th scope="col">Request Type</th>
@@ -61,7 +61,7 @@
                     <tr th:each="opportunity : ${leads}">
                         <td th:text="${opportunity.name}">John Doe</td>
                         <td th:text="${opportunity.latestLead.requestType.label}">Callback Request</td>
-                        <td th:text="${opportunity.latestLead.createDateTime}">2021-04-03</td>
+                        <td th:text="${#dates.format(opportunity.latestLead.createDateTime, 'dd-MM-yyyy')}">2021-04-03</td>
                         <td th:text="${opportunity.latestLead.brandVariant.brand.name}">Brand</td>
                         <td th:text="${opportunity.latestLead.brandVariant.name}">Model</td>
                         <td th:text="${opportunity.latestLead.leadStatus.label}">Model</td>

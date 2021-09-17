@@ -15,4 +15,7 @@ public class LeadStatusService {
 	public List<LeadStatus> getAllLeadStatus(){
 		return leadStatusRepo.findAll();
 	}
+	public LeadStatus getLeadByValue(String value){
+		return leadStatusRepo.findByValue(value);
+	}
 }

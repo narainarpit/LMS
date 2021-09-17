@@ -6,6 +6,7 @@ import com.example.lms.repository.OpportunityRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,5 +21,14 @@ public class OpportunityService {
 
 	public Optional<Opportunity> getOpportunity(Long id) {
 		return opportunityRepo.findById(id);
+	}
+	public Opportunity save(Opportunity opportunity){
+		return opportunityRepo.save(opportunity);
+	}
+	public Collection<Opportunity> getOpportunitiesByBrand(){
+		return opportunityRepo.getOpportunitiesByBrand();
+	}
+	public Collection<Opportunity> getOpportunitiesByStatus(){
+		return opportunityRepo.getOpportunitiesByStatus();
 	}
 }

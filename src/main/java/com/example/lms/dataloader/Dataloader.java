@@ -118,7 +118,7 @@ public class Dataloader implements ApplicationRunner {
 
 		List<Contact> contacts = new ArrayList<>();
 		contactsData.forEach(element -> {
-			contacts.add(new Contact(element.get(0), element.get(1), element.get(4), element.get(2), element.get(4)));
+			contacts.add(new Contact(element.get(0), element.get(1), element.get(2), element.get(3), element.get(4)));
 		});
 		contactRepo.saveAll(contacts);
 

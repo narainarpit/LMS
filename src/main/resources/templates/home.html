@@ -9,6 +9,8 @@
             th:src="@{/css/bootstrap-5.1.1-dist/js/bootstrap.bundle.js}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             th:src="@{/js/jquery/jquery-3.6.0.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 <body style="background: #6491bc">
 
@@ -40,46 +42,80 @@
                 <p>Leads for car dealership</p>
             </div>
         </div>
-        <div class="container">
+        <div class="">
             <div class="row">
-                <video autoplay muted loop>
-                    <source th:src="@{/videos/carvideo.mp4}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <div class="row">
-                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="https://unsplash.com/photos/cMQ_NeLaUqI?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink"
-                                 class="d-block" alt="Image 1" height="1200px"
-                                 th:src="@{images/carousel-1.jpg}">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://unsplash.com/photos/cMQ_NeLaUqI?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink"
-                                 class="d-block" alt="Image 2" height="1200px"
-                                 th:src="@{images/carousel-2.jpg}">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://unsplash.com/photos/cMQ_NeLaUqI?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink"
-                                 class="d-block" alt="Image 3" height="1200px"
-                                 th:src="@{images/carousel-3.jpg}">
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                            data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                            data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+                <div class="col-sm">
+                    <video autoplay muted loop height="400px">
+                        <source th:src="@{/videos/carvideo.mp4}" src="../static/videos/carvideo.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
-
+                <div class="col-sm">
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="https://unsplash.com/photos/cMQ_NeLaUqI?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink"
+                                     class="d-block" alt="Image 1" height="400px" width="800px"
+                                     th:src="@{images/carousel-1.jpg}">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://unsplash.com/photos/cMQ_NeLaUqI?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink"
+                                     class="d-block" alt="Image 2" height="400px" width="800px"
+                                     th:src="@{images/carousel-2.jpg}">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://unsplash.com/photos/cMQ_NeLaUqI?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink"
+                                     class="d-block" alt="Image 3" height="400px" width="800px"
+                                     th:src="@{images/carousel-3.jpg}">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                                data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                                data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </body>
+<script th:inline="javascript">
+    // let opp = /*[[${oppsByStatus}]]*/ "none";
+    // console.log(opp)
+    // debugger
+    // const labels = [
+    //     'New',
+    //     'Accepted',
+    //     'In Progress',
+    //     'Closed'
+    // ];
+    // const data = {
+    //     labels: labels,
+    //     datasets: [{
+    //         label: 'Opportunities Count based on Status',
+    //         backgroundColor: 'rgb(255, 99, 132)',
+    //         borderColor: 'rgb(255, 99, 132)',
+    //         data: [1, 3, 5, 2]
+    //     }]
+    // };
+    // // </block:setup>
+    //
+    // // <block:config:0>
+    // const config = {
+    //     type: 'line',
+    //     data: data,
+    //     options: {}
+    // };
+    // var myChart = new Chart(
+    //     document.getElementById('myChart'),
+    //     config
+    // );
+
+</script>
 </html>
